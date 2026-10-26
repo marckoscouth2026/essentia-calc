@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ESSENTIA | Calculadora Hard Kombucha (Litros)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .font-mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+  </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen py-8 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-2xl mx-auto space-y-6">
+
+    <!-- BOTÃO DE NAVEGAÇÃO: RETORNO PARA A CALCULADORA TRADICIONAL -->
+    <a 
+      href="./index.html" 
+      class="flex items-center justify-center gap-2 w-full py-3.5 px-4 bg-slate-800/90 hover:bg-slate-700/80 active:scale-[0.99] border-2 border-emerald-500/50 hover:border-emerald-400 text-emerald-300 font-bold rounded-xl shadow-lg transition-all text-sm tracking-wide"
+    >
+      <span>🍾</span>
+      <span>Voltar para a Calculadora Tradicional (Garrafas F2)</span>
+      <span class="text-xs">➔</span>
+    </a>
+
+    <!-- Header / Brand -->
+    <header class="bg-gradient-to-r from-amber-600/30 via-slate-800 to-amber-700/20 border border-amber-500/30 rounded-2xl p-6 shadow-xl relative overflow-hidden backdrop-blur-sm">
+      <div class="flex items-center justify-between">
+        <div>
+          <span class="inline-block text-xs uppercase tracking-widest font-bold text-amber-400 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20 mb-2">
+            ESSENTIA BEBIDAS VIVAS
+          </span>
+          <h1 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+            Calculadora Hard Kombucha
+          </h1>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1">
+            Formulação em <strong>Litros</strong> • Estilo IPA & Sour Tropical • ABV Calibrado
+          </p>
+        </div>
+        <div class="h-12 w-12 rounded-xl bg-amber-500/20 border border-amber-400/40 flex items-center justify-center text-amber-300 text-2xl font-bold shadow-inner">
+          🍺
+        </div>
+      </div>
+    </header>
+
+    <!-- Parâmetros de Entrada -->
+    <section class="bg-slate-800/90 border border-slate-700 rounded-2xl p-6 shadow-lg space-y-6">
+      <div class="flex items-center gap-2 pb-3 border-b border-slate-700">
+        <span class="text-xl">🎛️</span>
+        <h2 class="text-lg font-bold text-white tracking-wide">Volume e Perfil Alcoólico</h2>
+      </div>
+
+      <!-- Volume em Litros -->
+      <div>
+        <label class="block text-sm font-semibold text-slate-200 mb-2">
+          Volume Útil a Envasar (Litros):
+        </label>
+        <div class="relative">
+          <input 
+            type="number" 
+            id="volumeLitros" 
+            value="12.0" 
+            step="0.5" 
+            min="1" 
+            max="200"
+            class="w-full bg-slate-900 border-2 border-amber-500/60 rounded-xl px-4 py-3.5 text-2xl font-bold text-amber-300 font-mono focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-500/30 transition-all"
+          />
+          <span class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 font-bold">L</span>
+        </div>
+        <!-- Botões de Atalho em Litros -->
+        <div class="grid grid-cols-4 gap-2 mt-3">
+          <button onclick="setLitros(5.0)" class="btn-fast text-xs py-2 px-2 bg-slate-700/80 hover:bg-amber-600/30 hover:border-amber-500/50 border border-slate-600 rounded-lg font-semibold transition text-slate-200">
+            5 L (Mini)
+          </button>
+          <button onclick="setLitros(10.0)" class="btn-fast text-xs py-2 px-2 bg-slate-700/80 hover:bg-amber-600/30 hover:border-amber-500/50 border border-slate-600 rounded-lg font-semibold transition text-slate-200">
+            10 L
+          </button>
+          <button onclick="setLitros(12.0)" class="btn-fast text-xs py-2 px-2 bg-slate-700/80 hover:bg-amber-600/30 hover:border-amber-500/50 border border-slate-600 rounded-lg font-semibold transition text-slate-200">
+            12 L (20x600)
+          </button>
+          <button onclick="setLitros(20.0)" class="btn-fast text-xs py-2 px-2 bg-slate-700/80 hover:bg-amber-600/30 hover:border-amber-500/50 border border-slate-600 rounded-lg font-semibold transition text-slate-200">
+            20 L (Balde)
+          </button>
+        </div>
+      </div>
+
+      <!-- Seletor de Teor Alcoólico (ABV) -->
+      <div>
+        <label class="block text-sm font-semibold text-slate-200 mb-2">
+          Teor Alcoólico Alvo: <span id="abvLabel" class="text-amber-400 font-bold font-mono">6.5% ABV</span>
+        </label>
+        <div class="grid grid-cols-3 gap-2">
+          <button onclick="setABV(4.8, this)" class="abv-btn py-2.5 px-3 rounded-xl border border-slate-600 bg-slate-900 text-slate-300 text-xs sm:text-sm font-semibold hover:border-amber-500/50 transition">
+            Suave • 4.8%
+          </button>
+          <button onclick="setABV(6.5, this)" class="abv-btn active py-2.5 px-3 rounded-xl border-2 border-amber-500 bg-amber-500/10 text-amber-300 text-xs sm:text-sm font-bold shadow-md transition">
+            IPA Padrão • 6.5%
+          </button>
+          <button onclick="setABV(8.0, this)" class="abv-btn py-2.5 px-3 rounded-xl border border-slate-600 bg-slate-900 text-
